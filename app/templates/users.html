@@ -5,8 +5,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
+    <a href="{{url_for('index')}}">Главная</a>
     <div>
       <h1 class="text-primary">Пользователи</h1>
+    </div>
+    <div>
+      <form method="post" action="/add_form">
+        <button type="submit" class="btn btn-primary">Добавить</button>
+      </form>      
     </div>
     <table class ="table">
       <thead class ="thead">
@@ -16,6 +22,7 @@
           <th>Email</th>
           <th>Пол</th>
           <th>Дата</th>
+          <th></th>
         </tr>
       </thead>
       <tbody >
@@ -26,9 +33,19 @@
             <th>{{user.email}}</th>
             <th>{{user.gender}}</th>
             <th>{{user.date}}</th>
+            <th>
+              <form action="{{ url_for('delete', id=user.id) }}" method="post">
+                <button type="submit" class="btn btn-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                    <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                  </svg>
+                </button>
+              </form>
+            </th>
           </tr>
         {% endfor %}
       </tbody>
-    </table>  
+    </table>    
   </body>
 </html>
